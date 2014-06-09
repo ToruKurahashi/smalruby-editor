@@ -91,12 +91,14 @@ class SourceCode < ActiveRecord::Base
     tempfile.close
 
     Bundler.with_clean_env do
+      path = %!"#{path}"!
       Open3.capture3("ruby bin/bundle exec #{ruby_cmd} -c #{path}")
     end
   end
 
   def open3_capture3_run_program(path)
     Bundler.with_clean_env do
+      path = %!"#{path}"!
       Open3.capture3("#{ruby bin/bundle exec ruby_cmd} #{path}")
     end
   end
